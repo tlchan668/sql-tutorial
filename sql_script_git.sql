@@ -67,3 +67,5 @@ select  concat(firstname,' ', lastname) as 'Instructor', YearsExperience,
 --istenures <3 & istenured > 7  can't be
 --istenured >3| is tenured < 7  is all numbers
 --age !=5 | age !=7 all numbers   if wanted all numbers but 5 and 7 would write age != 5 & age != 7S
+
+fun
