@@ -62,3 +62,74 @@ select * from customers
 		where charindex('bank', name)>0)or CHARINDEX('eagle',name)>0 or CHARINDEX('cardinal',name)>0;
 
 
+--joins and cross joins and unions
+--never used in his profession career
+
+--PARAMATERIZED QUERIES
+--Takes parameters instead of hard coding
+select * from customers;
+
+--see all sales between n numbers
+--a, b, c analysis lines 
+--write a query that can change the analysis lines (a top 30% with b 40-70% and bottom 40% or certain ranges
+--show customers in a city(cincy) in a range of sales(
+select * from customers
+	where sales between 40000 and 70000 
+	and city = 'cincinnati';
+
+--change using parameters
+DECLARE @city varchar(25) = 'cincinnati'; 
+DECLARE @lowsales decimal(8,2);
+DECLARE @highsales decimal(8,2);
+
+--pass data in would do
+set @lowsales = 40000;
+set @highsales = 70000;
+
+select * from customers
+	where sales between @lowsales and @highsales
+	and city = @city;
+
+
+--so columbus says 35000 and 80000
+DECLARE @city varchar(25) = 'columbus'; 
+DECLARE @lowsales decimal(8,2) =35000;
+DECLARE @highsales decimal(8,2) =80000;
+
+--pass data in would do
+/*set @lowsales = 40000;
+set @highsales = 70000;*/
+
+select * from customers
+	where sales between @lowsales and @highsales
+	and city = @city;
+
+--cleveland wants 30000 to 85000
+DECLARE @city varchar(25) = 'cleveland'; 
+DECLARE @lowsales decimal(8,2) =30000;
+DECLARE @highsales decimal(8,2) =85000;
+
+--pass data in would do
+/*set @lowsales = 40000;
+set @highsales = 70000;*/
+
+select * from customers
+	where sales between @lowsales and @highsales
+	and city = @city;
+--store in database and save it is called procedures
+--STORED PROCEDURES---stored and executed by knowing name
+--
+alter procedure SalesRangeByCity 
+--parameters want to pass into it, listed are the default values if none given
+	@city varchar(25) = 'cleveland',
+	@lowsales decimal(8,2) =30000,
+	@highsales decimal(8,2) =85000
+as
+BEGIN
+--PROCEDURE BODY
+	select * from customers
+		where sales between @lowsales and @highsales
+			and city = @city;
+end
+
+
