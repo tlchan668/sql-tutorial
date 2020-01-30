@@ -54,6 +54,7 @@ select  concat(firstname,' ', lastname) as 'Instructor', YearsExperience,
 	order by i.Lastname; 
 
 ---only want not tenured on this list using not
+
 select  concat(firstname,' ', lastname) as 'Instructor', YearsExperience, 
 		c.id as 'Course Code', i.istenured,
 		concat(subject, ' ', section) as 'class'
@@ -68,4 +69,6 @@ select  concat(firstname,' ', lastname) as 'Instructor', YearsExperience,
 --istenured >3| is tenured < 7  is all numbers
 --age !=5 | age !=7 all numbers   if wanted all numbers but 5 and 7 would write age != 5 & age != 7S
 
-fun
+January 30, 2020
+
+
