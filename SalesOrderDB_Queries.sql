@@ -55,9 +55,11 @@ select city, sum(sales) as 'total sales for cincyd',
 	--where City = 'Cincinnati'or city='cleveland'
 	group by city
 
---sum of all of sales for cincy, cleveland, and columbus only cleveland and columbus sales greater than 50,000
+/*
+sum of all of sales for cincy, cleveland, and columbus only cleveland and columbus sales greater than 50,000
 --change number because eliminate customer under 50000
 --where clause operates on indivdual records
+*/
 select city, sum(sales) as 'total sales for cincyd',
 		max(sales) as 'highest sales',
 		min(sales) as 'lowest sales',
@@ -78,3 +80,8 @@ select city, sum(sales) as 'total sales for cincyd',
 	group by city
 	having sum(sales) > 600000;--summarizes group  and looks at the sum 
 	--when using group by can not put anything in select but that and has to be an agregate function
+
+
+--after lunch
+
+
