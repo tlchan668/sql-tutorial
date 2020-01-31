@@ -148,8 +148,6 @@ update orderlines set
 			join orderlines ol
 				on o.id =ol.OrdersId
 			where c.sales > 90000);	
-
-
 --give me just price of those sales to use in update*
 --need unique orderline items id 
 --how to approact it 
@@ -169,11 +167,35 @@ select ol.id, ol.price, (ol.price*.9) as 'new price'
 	join orderlines ol
 		on o.id =ol.OrdersId
 	where c.sales > 90000;	
---to show as new price
 
 
 
-	
+/*after lunch 
+talked about demo day
+and working */
+
+/*
+after break
+DELETE is simplist be sure to inclue where or else delete all rows
+best to use primary key, ie id because reference only one record (will use subqueries).  becareful doing anyother column
+try reading it first
+
+delete from customer
+	where bool-exp
+*/
+--here are all the unique products in table
+select /*distinct*/ Description from orderlines
+--delete timex where id is in collection of lineitems that have rolex
+delete from orderlines
+	where id in (select id from orderlines
+	where description = 'timex');
+
+select id from orderlines
+	where description = 'timex';
+
+
+--transactions group transactions together so all right to complete if not all true will fail
+
 
 
 
