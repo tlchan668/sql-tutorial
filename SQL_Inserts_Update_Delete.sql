@@ -62,9 +62,119 @@ insert into orders(customerid, description)
 values((select id from Customers
 		where name ='doud llc'), 'an order');
 
-insert into orderlines(orderid, product, quantity, price)
+insert into orderlines(ordersid, product, quantity, price)
     values(
 		(Select id from orders where description = 'an order'), 'dell 5591', 1, 1500);
+
+/*UPDATE to change the date.  can do on multiple records so there is a where clause
+very few cases where would not use where clause.  
+WARNING--if no where clause could be making big mistake
+use where clause on select first and make sure what you want then do update
+UPDATE tablename  SET
+	columnname = value,
+	columnname2 = value2,
+	as many as need
+WHERE bool-exp;
+update employees set
+	salary = salary*1.03  would be a 3% raise
+*/
+--write query to customer display order and lines (join those three tables together) 
+select * 
+	 from customers c
+	 join  orders o
+		on c.id = o.CustomerId
+	join orderlines ol
+		on o.id =ol.OrdersId
+	where c.name = 'convergys';
+--need to update sales for customer after making the order
+--total for order could write a query to get sum total of order
+--shows sales of customer
+select * from orders o
+	join customers c
+		on c.id = o.CustomerId
+	where o.id = 28;
+--calculate value of our order add a column giving total (derived column) 
+select *, ol.Quantity*ol.Price
+	from OrderLines ol
+	where ol.OrdersId = 28;
+
+--add multiple rows by using sum gives total amount of sales for order $155.54
+select sum(ol.Quantity*ol.Price)  
+	from OrderLines ol
+	where ol.OrdersId = 28;
+
+--update the customer
+update customers set 
+	sales =(select sum(ol.Quantity*ol.Price)  
+			from OrderLines ol
+			where ol.OrdersId = 28) --to get all sales would have to get more orders and add complexity
+	where name = 'convergys';
+--gregs way
+update customers set 
+	sales =(select sum(ol.price * ol.Quantity)  
+			from OrderLines ol
+			join orders o
+				on o.id = ol.OrdersId
+			join Customers c
+				on c.id=o.CustomerId
+				where c.name = 'convergys') --this gets the old sales and adds to the sales just done !!! come back and try
+		where name = 'convergys';
+
+--increase the sales of all customers in columbus by 10%
+select * from customers where city = 'columbus';
+update customers set
+	sales = sales *1.1
+		where city='columbus';
+
+select * from customers where city = 'columbus';--verify work...do initial query in one window and do here and look back
+
+--price cut on echo from 99.99 to 69.99
+update OrderLines set
+	price= 69.99
+	where product = 'echo';
+
+select * from orderlines where product = 'echo';
+
+--signed deal with best customers who spend most..get discount on everything they order by 10% but has to have over 90000 in sales
+--find their orderlines and update the price across the board by 
+--what will unique identify the line item== orderline id in update need to pull the orderlines id
+update orderlines set
+	price = price *.9
+	where id in(
+		select ol.id
+			from customers c
+			join  orders o
+				on c.id = o.CustomerId
+			join orderlines ol
+				on o.id =ol.OrdersId
+			where c.sales > 90000);	
+
+
+--give me just price of those sales to use in update*
+--need unique orderline items id 
+--how to approact it 
+--find all customer above 90000
+select ol.id, ol.price
+	from customers c
+	join  orders o
+		on c.id = o.CustomerId
+	join orderlines ol
+		on o.id =ol.OrdersId
+	where c.sales > 90000;	
+--to show as new price 
+select ol.id, ol.price, (ol.price*.9) as 'new price'
+	from customers c
+	join  orders o
+		on c.id = o.CustomerId
+	join orderlines ol
+		on o.id =ol.OrdersId
+	where c.sales > 90000;	
+--to show as new price
+
+
+
+	
+
 
 
 
