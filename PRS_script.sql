@@ -6,6 +6,7 @@ go
 create database PRS;
 GO
 use PRS;
+GO
 --create table user 
 create table Users (
 	Id int not null primary key identity (1,1),
@@ -14,7 +15,7 @@ create table Users (
 	Firstname  nvarchar(30) not null,
 	Lastname nvarchar(30) not null,
 	Phone nvarchar(12),
-	Email nvarchar(100),
+	Email nvarchar(255),
 	IsAdmin bit not null default 0,
 	IsReviewer bit not null default 0,
 );
@@ -136,8 +137,8 @@ GO
 insert into RequestLines
 	(RequestId, ProductId, Quantity)
 	values
-	--(1,2, 1)--dell computer,
-	--(1,1,1);--paper 
-	--(1,3,2)--2 papers
+	(1,2, 1)--dell computer,
+	(1,1,1)--paper 
+	(1,3,2)--2 papers
 	(2,1,2)
 	
