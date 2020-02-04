@@ -64,7 +64,8 @@ use Bootcamp;
 --make names of your tables plural because prolly have more than one and see and capitalize it
 --create a table called students
 --need to define columns 
---conventinal to create DB table with primary keys (if don't greg will hunt you down!!!)
+--conventinal to create DB table with primary keys 
+--(if don't greg will hunt you down!!!)
 --convention that columns with primary key come first in list
 --let system generate your primary key that are int and don't have to worry about it
 -- column name, type, (only required but if key need more info) allowed to be null 
@@ -117,6 +118,9 @@ insert into Technology(Name, PrimaryInstructor)
 	('Java', 'Sean');
 select * from Technology
 --how to update from dotnet to .net???
+update technology set
+	name = '.Net'
+	where id =100;
 --create another table called cohort
 --create foreign key that comes from technology.id
 create table Cohort(
@@ -132,3 +136,39 @@ create table Cohort(
 
 );
 select * from cohort
+/*AFTER LUNCH
+modifying an existing column in a table.  
+want to have value of 0
+make changes to column in table need to alter table
+have to fix data before can alter...since have null in load
+have to change that */
+select * from students 
+	where loan is null;
+update Students set
+	loan = 0
+	where loan is null;
+alter table students 
+	alter  column loan  decimal(8,2) not null;
+--default value is a constraint and would take another
+--step to add here how to make default 0
+alter table students
+	add constraint  df_loan default 0 for loan;
+
+--add acolumn to an existing table
+--create a node field to keep misc info about cohort
+alter table cohort
+	add note nvarchar(80) not null;
+	
+select * from cohort
+--create a script to add and change and delete and modify
+--command in ssms call GO...that locks in everything before that go command
+
+
+--drop a column deletes column and if there was any data
+--unless it is a key
+alter table cohort
+	drop note;
+
+--
+--lets give it a try
+--outline tables for capstone 
