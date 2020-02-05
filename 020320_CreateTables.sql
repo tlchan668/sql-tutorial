@@ -171,4 +171,5 @@ alter table cohort
 
 --
 --lets give it a try
---outline tables for capstone 
+--outline tables for capstone in PRS_Script
+--how to make a column unique that is not a key

@@ -19,4 +19,5 @@ GO
 EXEC AddLineItem @RequestDescritption='1st request',@ProductPartNbr='Paper';
 GO
 
-select * from requestlines where requestid = 1
+select * from requestlines
+select * from requests	

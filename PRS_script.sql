@@ -1,11 +1,11 @@
 use master;
 Go
 --create database 
-drop database if exists PRS;
+drop database if exists TestCap;
 go
-create database PRS;
+create database TestCap;
 GO
-use PRS;
+use TestCap;
 GO
 --create table user 
 create table Users (
@@ -36,8 +36,6 @@ insert into Users
 	('username3', 'password', 'Leia', 'Organo','859.333.3333' ,'','','')
 */
 GO
-
-use PRS;
 --create table Vendors
 create table Vendors (
 	Id int not null primary key identity (1,1),
@@ -75,7 +73,6 @@ update vendors set
 --photopath if want an image of the product in capstone
 --foreignkey is vendor id
 
-use PRS;
 --create table Products
 create table Products (
 	Id int primary key identity (1,1),
@@ -137,8 +134,8 @@ GO
 insert into RequestLines
 	(RequestId, ProductId, Quantity)
 	values
-	(1,2, 1)--dell computer,
-	(1,1,1)--paper 
-	(1,3,2)--2 papers
+	(1,2,1),--dell computer,
+	(1,1,1),--paper 
+	(1,3,2),--2 papers
 	(2,1,2)
-	
+GO	
