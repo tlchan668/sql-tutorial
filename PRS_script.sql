@@ -139,3 +139,10 @@ insert into RequestLines
 	(1,3,2),--2 papers
 	(2,1,2)
 GO	
+
+
+select * from users
+select * from vendors
+select * from Products
+select * from Requests
+Select * from RequestLines
